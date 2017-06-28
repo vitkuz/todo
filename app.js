@@ -4,6 +4,8 @@ var _ = require("lodash");
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
+//https://simonsmith.io/organising-webpack-config-environments/
+
 var mongoose = require('mongoose');
 
 var Todo = mongoose.model('Todo', { name: String, id:Number });
