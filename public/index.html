@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <form id="todo-form">
+        <input type="text" id="todo-name" name="todoName">
+        <button>Submit</button>
+    </form>
+
+    <div id="results"></div>
+
+    <script src="js/jquery.js"></script>
+    <script>
+
+        $.ajax({
+            type: "GET",
+            url: "/items",
+            success: function(data)
+            {
+                console.log(data); // show response from the php script.
+
+                data.forEach(function(todo) {
+                    console.log(todo);
+                    $("#results").append( `<p data-id="${todo._id}">${todo.name} - <a href="#">Delete</a></p>` );
+                });
+
+
+            }
+        });
+
+
+        $("#todo-form").submit(function(e) {
+
+            var url = "/items"; // the script where you handle the form input.
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $("#todo-form").serialize(), // serializes the form's elements.
+                success: function(data)
+                {
+                    console.log(data); // show response from the php script.
+
+                    $("#results").append( `<p data-id="${data._id}">${data.todoName} - <a href="#">Delete</a></p>`);
+                }
+            });
+
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        });
+
+    </script>
+
+</body>
+</html>
