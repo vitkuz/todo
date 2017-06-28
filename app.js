@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var _ = require("lodash");
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/test01');
+mongoose.connect(process.env.MONGOLAB || 'mongodb://localhost:27017/test01');
 
 var Todo = mongoose.model('Todo', { name: String, id:Number });
 
