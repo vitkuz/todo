@@ -6,9 +6,16 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <noscript>
+        You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+
     <form id="todo-form">
         <input type="text" id="todo-name" name="todoName">
         <button>Submit</button>
@@ -16,7 +23,8 @@
 
     <div id="results"></div>
 
-    <script src="js/jquery.js"></script>
+    <script src="app.bundle.js"></script>
+    <script src="js/libs/jquery.js"></script>
     <script>
 
         $.ajax({
