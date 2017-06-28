@@ -3,14 +3,17 @@ var bodyParser = require('body-parser');
 var _ = require("lodash");
 
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGOLAB || 'mongodb://localhost:27017/test01');
 
 var Todo = mongoose.model('Todo', { name: String, id:Number });
-
 var User = mongoose.model('User', { name: String, email: String, password:String });
 
 var fs = require("fs")
 var app = express();
+
+mongoose.connect(process.env.MONGOLAB || 'mongodb://localhost:27017/test01');
+app.set('port', (process.env.PORT || 5000));
+
+console.log(`PORT = ${process.env.PORT} MONGO=${process.env.MONGOLAB}`);
 
 var todos = [];
 
@@ -64,6 +67,8 @@ app.post("/items", function(req,res) {
     res.json(item);
 });
 
-app.listen(3000)
+app.listen(app.get('port'), function() {
+    console.log('Node app is running on port', app.get('port'));
+});
 
 
