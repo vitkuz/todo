@@ -2,6 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var _ = require("lodash");
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 var mongoose = require('mongoose');
 
 var Todo = mongoose.model('Todo', { name: String, id:Number });
@@ -14,6 +16,7 @@ mongoose.connect(process.env.MONGOLAB || 'mongodb://localhost:27017/test01');
 app.set('port', (process.env.PORT || 5000));
 
 console.log(`PORT = ${process.env.PORT} MONGO=${process.env.MONGOLAB}`);
+console.log(`PORT = ${process.env.PORT} MONGO=${process.env.MONGOLAB } NODE_ENV = ${NODE_ENV}`);
 
 var todos = [];
 
